@@ -4,12 +4,12 @@ import bodyParser from 'body-parser';
 
 // Binance uses
 
-const Binance = require('node-binance-api');
+// const Binance = require('node-binance-api');
 
-const binance = new Binance().options({
-  APIKEY:'Big4iFN6TYAMwPZobCxN7s5CEeIilV8EGs1qOV8FM4stDOSFVPHSa8jpiQstRKgS',
-  APISECRET:'PODHcpXrvbmekAerJV8tS8Ramwb8RWhjgohC9jj9SCmGjdNSrWcE007PPWpevElE'
-});
+// const binance = new Binance().options({
+//   APIKEY:'Big4iFN6TYAMwPZobCxN7s5CEeIilV8EGs1qOV8FM4stDOSFVPHSa8jpiQstRKgS',
+//   APISECRET:'PODHcpXrvbmekAerJV8tS8Ramwb8RWhjgohC9jj9SCmGjdNSrWcE007PPWpevElE'
+// });
 
 const app = express();
 const router = express.Router();
@@ -44,50 +44,44 @@ get_data(url).then(result => {
 );
 });
 
-router.route('/binance').get((req, res) => {
-    Issue.find((err, issues) => {
-        if (err)
-            console.log(err);
-        else
-        binance.useServerTime((error, ticker) => {
-              console.log("useServerTime", ticker);
-            });
-        // binance.useServerTime((error, ticker) => {
-        //       console.log("useServerTime", ticker);
-        //     });
-//        binance.bookTickers((error, ticker) => {
-//   console.log("bookTickers", ticker);
+// router.route('/binance').get((req, res) => {
+//     Issue.find((err, issues) => {
+//         if (err)
+//             console.log(err);
+//         else
+//         binance.useServerTime((error, ticker) => {
+//               console.log("useServerTime", ticker);
+//             });
+//         // binance.useServerTime((error, ticker) => {
+//         //       console.log("useServerTime", ticker);
+//         //     });
+// //        binance.bookTickers((error, ticker) => {
+// //   console.log("bookTickers", ticker);
+// // });
+
+
+// // binance.prices((error, ticker) => {
+// //     console.log("prices", ticker);
+// //   });
+
+// // binance.balance({timestamp: Date.now()}, (err, issue) => {
+// //     if (err)
+// //         console.log(err);
+// //     else
+// //         res.json(issue);
+// // });
+
+
+//              res.json(issues);
+//     });
 // });
 
 
-// binance.prices((error, ticker) => {
-//     console.log("prices", ticker);
-//   });
-
-// binance.balance({timestamp: Date.now()}, (err, issue) => {
-//     if (err)
-//         console.log(err);
-//     else
-//         res.json(issue);
-// });
 
 
-             res.json(issues);
-    });
+
+app.use('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
 });
-// var app = require('express')();
-// var server = require('http').Server(app);
-// var io = require('socket.io')(server);
 
-// io.on('connection', function (socket) {
-//     console.log("A user connected");
-//     socket.emit('test event', 'THIS is SOME NEW DATA!!!');
-// });
-
-// server.listen(4000, () => {
-//     console.log("Socket.io server is listening on port 3000");
-// });
-
-app.use('/', router);
-
-app.listen(4000, () => console.log('Express server running on port 4000'));
+app.listen(process.env.PORT || 3000, () => console.log('Express server running on port 4000'));
