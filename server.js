@@ -37,8 +37,8 @@ app.post('/auth', (req, res, next) => {
 // console.log("auth ", req.body.apiKey);
 get_data(url).then(result => {
         // console.log(result)     onchange="func()"
-        res.status(200).send( { status:'Successfully found!',result });
-        res.render("./set_order", { result })
+        res.status(200).send( { status:'Successfully found!',result:result.json() });
+        // res.render("./set_order", { result })
     }
 
 );
