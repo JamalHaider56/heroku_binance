@@ -2,14 +2,14 @@ const express =  require('express');
 const cors =  require('cors');
 const bodyParser =  require('body-parser');
 const fetch = require('node-fetch');
-
+const path = require('path');
 // Binance uses
 
 const Binance = require('node-binance-api');
 
 const binance = new Binance().options({
-  APIKEY:'Big4iFN6TYAMwPZobCxN7s5CEeIilV8EGs1qOV8FM4stDOSFVPHSa8jpiQstRKgS',
-  APISECRET:'PODHcpXrvbmekAerJV8tS8Ramwb8RWhjgohC9jj9SCmGjdNSrWcE007PPWpevElE'
+  APIKEY:'matQZVi1yNX3BeSgsaHMVfus6lyeStVQTxYyAHtQ69ZjMMvUC4X9JTowAsraWYu3',
+  APISECRET:'cjweqx4y1LuWNpWnOXJ6i8FcKHj19V02CFaXbQf0FPzCQkeOeTXOaAn2PQQD1niW'
 });
 
 const app = express();
