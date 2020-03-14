@@ -46,13 +46,14 @@ get_data(url).then(result => {
 );
 });
 
-router.route('/binance').get((req, res) => {
+app.post('/binance',async (req, res) => {
     // Issue.find((err, issues) => {
     //     if (err)
     //         console.log(err);
     //     else
-        binance.useServerTime((error, ticker) => {
+       await binance.useServerTime((error, ticker) => {
               console.log("useServerTime", ticker);
+              res.status(200).send( { status:'Successfully found!',ticker:ticker });
             });
 //         // binance.useServerTime((error, ticker) => {
 //         //       console.log("useServerTime", ticker);
@@ -74,7 +75,7 @@ router.route('/binance').get((req, res) => {
 // // });
 
 
-             res.json(issues);
+            //  res.json(issues);
     // });
 });
 
