@@ -1,15 +1,16 @@
 const express =  require('express');
 const cors =  require('cors');
 const bodyParser =  require('body-parser');
+const fetch = require('node-fetch');
 
 // Binance uses
 
-// const Binance = require('node-binance-api');
+const Binance = require('node-binance-api');
 
-// const binance = new Binance().options({
-//   APIKEY:'Big4iFN6TYAMwPZobCxN7s5CEeIilV8EGs1qOV8FM4stDOSFVPHSa8jpiQstRKgS',
-//   APISECRET:'PODHcpXrvbmekAerJV8tS8Ramwb8RWhjgohC9jj9SCmGjdNSrWcE007PPWpevElE'
-// });
+const binance = new Binance().options({
+  APIKEY:'Big4iFN6TYAMwPZobCxN7s5CEeIilV8EGs1qOV8FM4stDOSFVPHSa8jpiQstRKgS',
+  APISECRET:'PODHcpXrvbmekAerJV8tS8Ramwb8RWhjgohC9jj9SCmGjdNSrWcE007PPWpevElE'
+});
 
 const app = express();
 const router = express.Router();
@@ -31,27 +32,28 @@ app.use(bodyParser.json());
 
 app.post('/auth', (req, res, next) => {
    
-    key = req.body.apiKey,
-    secret = req.body.secretKey,
+    // key = req.body.apiKey,
+    // secret = req.body.secretKey,
 
 // console.log("auth ", req.body.apiKey);
 get_data(url).then(result => {
         // console.log(result)     onchange="func()"
-        res.status(200).send( { status:'Successfully found!',result:result.json() });
+        console.log(result)
+        res.status(200).send( { status:'Successfully found!',result:result });
         // res.render("./set_order", { result })
     }
 
 );
 });
 
-// router.route('/binance').get((req, res) => {
-//     Issue.find((err, issues) => {
-//         if (err)
-//             console.log(err);
-//         else
-//         binance.useServerTime((error, ticker) => {
-//               console.log("useServerTime", ticker);
-//             });
+router.route('/binance').get((req, res) => {
+    // Issue.find((err, issues) => {
+    //     if (err)
+    //         console.log(err);
+    //     else
+        binance.useServerTime((error, ticker) => {
+              console.log("useServerTime", ticker);
+            });
 //         // binance.useServerTime((error, ticker) => {
 //         //       console.log("useServerTime", ticker);
 //         //     });
@@ -72,9 +74,9 @@ get_data(url).then(result => {
 // // });
 
 
-//              res.json(issues);
-//     });
-// });
+             res.json(issues);
+    // });
+});
 
 
 
